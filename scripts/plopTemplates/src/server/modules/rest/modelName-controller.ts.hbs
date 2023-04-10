@@ -1,0 +1,41 @@
+// Library
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../../auth/auth.guard';
+import {
+	ApiTags,
+	ApiBearerAuth,
+	ApiResponse,
+	ApiOperation
+} from '@nestjs/swagger';
+
+// Internal
+import { {{pascalCase moduleName}}Model, {{pascalCase moduleName}}Service } from '../index';
+
+@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
+@ApiTags('{{moduleName}}')
+@Controller('{{moduleName}}')
+export class {{pascalCase moduleName}}Controller {
+	constructor(private readonly {{pascalCase moduleName}}Service: {{pascalCase moduleName}}Service) {}
+
+	@Post()
+	@ApiOperation({ summary: 'Create {{pascalCase moduleName}}' })
+	@ApiResponse({
+		status: 201,
+		description: 'The record has been successfully created.'
+	})
+	@ApiResponse({ status: 403, description: 'Forbidden.' })
+	async create(@Body() {{pascalCase moduleName}}Model: {{pascalCase moduleName}}Model) {
+		return await this.{{pascalCase moduleName}}Service.create({{pascalCase moduleName}}Model);
+	}
+
+	@Get()
+	async findAll(): Promise<{{pascalCase moduleName}}Model[]> {
+		return await this.{{pascalCase moduleName}}Service.findAll();
+	}
+
+	@Get(':id')
+	async findOne(@Param('id') id: string): Promise<{{pascalCase moduleName}}Model> {
+		return await this.{{pascalCase moduleName}}Service.findOneById(+id);
+	}
+}

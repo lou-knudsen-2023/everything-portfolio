@@ -1,0 +1,51 @@
+{
+    "config": {
+        "web": {
+            "app": "@omega-web-common/config",
+            "model": "@omega-web-common/model",
+            "style": "@omega-web-common/styles"
+        },
+        "mobile": {
+            "app": "@omega-mobile-common/config",
+            "model": "@omega-mobile-common/model",
+            "style": "@omega-mobile-common/styles"
+        },
+        "shared": {
+
+        }
+    },
+    "routes": {
+        "chat": "chat"
+    },
+    "components": {
+        "web": {
+
+        },
+        "mobile": {
+
+        },
+        "shared": {
+
+        }
+    },
+    "containers": {
+        "chat": {
+            "web": "@omega-web-containers/chat",
+            "mobile": "@omega-mobile-containers/chat"
+        }
+    },
+    "shared": {
+        "assets": "@omega-core/assets",
+        "i18n": "@omega-core/i18n",
+        "rules": "@omega-core/rules",
+        "services": "@omega-core/services",
+        "state": { 
+            // Todo add remaining state files as base package
+            "containers": {
+                "app": "@omega-state-machines/app",
+                "chat": "@omega-state-machines/chat"
+            }
+        },
+        "utils": "@omega-core/utils"
+    }
+}

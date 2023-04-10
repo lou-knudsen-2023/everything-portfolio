@@ -1,0 +1,59 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+jobs:
+  - job: Test_Coverage_Web_and_Mobile
+    pool:
+      vmImage: 'ubuntu-16.04'
+
+    ## Multi-container support here
+    services:
+      postgres:
+        image: circleci/postgres:9.6.13-alpine
+        ports:
+          - "5432:5432"
+        volumes:
+        - db-data:/var/lib/postgresql/data
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_PASSWORD: password
+    ## End multi-container
+    
+    steps:
+    - script: |
+        npm install codecov
+        npm install
+        npm test
+        npx codecov
+      displayName: 'npm test'
+      
+  - job: Build_and_Deploy_Web
+    pool:
+      vmImage: 'ubuntu-16.04'
+      container: 
+        image: circleci/node:14.15.4
+        name: react-ssr-advanced
+
+    steps:
+    - script: |
+        export CHOKIDAR_USEPOLLING=1
+        npm install lerna cross-env
+        rm -rf node_modules && npx lerna clean --yes && npm install
+        npm run build:frontend
+        npm run build:backend:ci
+      displayName: 'npm build'
+    - script: |
+        sudo snap install --classic heroku
+        heroku login
+        heroku stack:set heroku-18
+        cd docker/backend/prod
+        heroku container:login
+        heroku container:push web --app=react-ssr-nest-api
+        heroku container:release web --app=react-ssr-nest-api
+      displayName: 'Deploy Backend Build'

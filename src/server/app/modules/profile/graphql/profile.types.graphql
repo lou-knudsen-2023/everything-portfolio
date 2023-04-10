@@ -1,0 +1,82 @@
+type Query {
+    getProfile(filters: ProfileFindOptions!): [Profile]
+    profile(id: ID!): Profile
+}
+
+type Mutation {
+    createProfile( 
+		githubUid: Int       
+        githubId: String
+        lastTokenWeb: String
+        lastTokenMobile: String
+        name: String
+        email: String
+        avatarUrl: String
+        bio: String
+        location: String
+        createdAt: String
+        updatedAt: String
+    ): Profile
+    updateProfile(
+        id: ID!
+		githubUid: Int 
+        githubId: String
+        lastTokenWeb: String
+        lastTokenMobile: String
+        name: String
+        email: String
+        avatarUrl: String
+        bio: String
+        location: String
+        createdAt: String
+        updatedAt: String
+    ): Profile
+}
+
+type Subscription {
+    profileRecieved: Profile
+}
+
+type Profile {
+	id: Int
+	githubUid: Int 
+	githubId: String
+	lastTokenWeb: String
+	lastTokenMobile: String
+	name: String
+	email: String
+	avatarUrl: String
+	bio: String
+	location: String
+	createdAt: String
+	updatedAt: String
+}
+
+input ProfileFindOptions {
+	select: [String]
+	relations: [String]
+	where: InputProfile
+	not: InputProfile
+	in: InputProfile
+	like: InputProfile
+	any: InputProfile
+	order: InputProfile
+	skip: Int
+	take: Int
+	cache: Boolean
+}
+
+input InputProfile {
+	id: Int
+	githubUid: Int 
+	githubId: String
+	lastTokenWeb: String
+	lastTokenMobile: String
+	name: String
+	email: String
+	avatarUrl: String
+	bio: String
+	location: String
+	createdAt: String
+	updatedAt: String
+}

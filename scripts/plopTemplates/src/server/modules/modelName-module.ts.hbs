@@ -1,0 +1,24 @@
+// Library
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Rest
+import { {{pascalCase moduleName}}Controller } from './rest/{{moduleName}}.controller';
+
+// Graphql
+import { {{pascalCase moduleName}}Resolver } from './graphql/{{moduleName}}.resolver';
+
+// Shared
+import { {{pascalCase moduleName}}Service } from './shared/{{moduleName}}.service';
+import { {{pascalCase moduleName}}Model } from './shared/{{moduleName}}.model';
+
+@Module({
+    imports: [TypeOrmModule.forFeature([{{pascalCase moduleName}}Model])],
+    controllers: [{{pascalCase moduleName}}Controller],
+    providers: [{{pascalCase moduleName}}Service, {{pascalCase moduleName}}Resolver]
+})
+export class {{pascalCase moduleName}}Module {}
+
+// Extra exports
+export * from './shared/{{moduleName}}.model';
+export * from './shared/{{moduleName}}.service';

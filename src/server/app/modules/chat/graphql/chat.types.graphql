@@ -1,0 +1,53 @@
+type Query {
+	getChats(filters: ChatFindOptions!): [Chat]
+	chat(id: ID!): Chat
+}
+
+type Mutation {
+	createChat(message: String, groupId: Int, ownerId: Int, date: String): Chat
+	updateChat(
+		id: ID!
+		message: String
+		groupId: Int
+		ownerId: Int
+		date: String
+	): Chat
+}
+
+type Subscription {
+	chatRecieved: Chat
+}
+
+type Chat {
+	id: Int
+	groupId: Int
+	ownerId: Int
+	owner: Profile
+	message: String
+	type: String
+	date: String
+}
+
+input ChatFindOptions {
+	select: [String]
+	relations: [String]
+	where: InputChat
+	not: InputChat
+	in: InputChat
+	like: InputChat
+	any: InputChat
+	order: InputChat
+	skip: Int
+	take: Int
+	cache: Boolean
+}
+
+input InputChat {
+	id: Int
+	groupId: Int
+	group: InputGroup
+	ownerId: Int
+	message: String
+	type: String
+	date: String
+}

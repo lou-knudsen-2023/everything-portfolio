@@ -1,0 +1,21 @@
+{
+	"name": "@omega-state-machines/chat",
+	"version": "0.4.26",
+	"main": "./chat.redux-model.ts",
+	"gitHead": "f427f35e8053f50b3dbfebf486a0528220c3888b",
+	"scripts": {
+		"deploy": "npm version patch && npm publish --access public"
+	},
+	"dependencies": {
+		"@omega-core/services": "^0.4.0",
+		"@omega-core/rules": "^0.4.0",
+		"@omega-core/utils": "^0.4.0",
+		"rxjs": "6.5.2",
+		"redux-observable": "1.1.0",
+		"lodash": "4.17.21"
+	},
+	"devDependencies": {
+		"redux-mock-store": "1.5.3",
+		"reselect": "4.0.0"
+	}
+}

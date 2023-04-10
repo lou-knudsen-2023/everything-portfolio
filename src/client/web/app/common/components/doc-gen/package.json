@@ -1,0 +1,15 @@
+{
+  "name": "@omega-web-components/doc-gen",
+  "version": "1.1.26",
+  "description": "",
+  "main": "index.tsx",
+  "scripts": {
+    "deploy": "npm version patch && npm publish --access public"
+  },
+  "dependencies": {
+    "gojs": "2.0.12"
+  },
+  "author": "",
+  "license": "ISC",
+  "gitHead": "f427f35e8053f50b3dbfebf486a0528220c3888b"
+}

@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+
+todo
+
+# IDE
+/.idea
+/.awcache
+/.vscode
+
+# misc
+npm-debug.log
+
+# package-lock
+# package-lock.json
+
+# example
+/quick-start
+
+# tests
+/test
+/coverage
+/frontend-coverage
+/mobile-coverage
+/backend-coverage
+src/client/mobile/.jest
+/.nyc_output
+
+# dist
+dist/
+docker/frontend/prod/build
+yarn-error.log
+lerna-debug.log

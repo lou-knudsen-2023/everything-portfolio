@@ -1,0 +1,15 @@
+{
+  "name": "@omega-web-components/material-form",
+  "version": "0.4.26",
+  "main": "./index.tsx",
+  "scripts": {
+    "deploy": "npm version patch && npm publish --access public"
+  },
+  "dependencies": {
+    "react-jsonschema-form-material-ui": "2.1.11"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "gitHead": "f427f35e8053f50b3dbfebf486a0528220c3888b"
+}
